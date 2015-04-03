@@ -64,6 +64,7 @@ restify.serve(router, UserModel);
 
 app.use(router);
 
-app.listen(3000, function() {
-    console.log("Cura Express server listening on port 3000");
+var port = process.env.PORT || 3000
+app.listen(port, function() {
+    console.log("Cura Express server listening on port ", port);
 });

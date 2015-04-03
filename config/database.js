@@ -1,6 +1,6 @@
 // config/database.js
 module.exports = {
 
-	'url' : 'mongodb://localhost:27017' // looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
+	'url' : 'mongodb://frontend:frontend@ds043170.mongolab.com:43170/heroku_app35498850' 
 
 };
