@@ -62,7 +62,12 @@ restify.serve(router, BiometricModel);
 restify.serve(router, EventModel);
 restify.serve(router, UserModel);
 
-app.use(router);
+app.use(router)
+
+app.use(function (req, res){
+	res.setHeader("Access-Control-Allow-Origin", "*");
+});
+
 
 var port = process.env.PORT || 3000
 app.listen(port, function() {
