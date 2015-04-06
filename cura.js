@@ -11,28 +11,20 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var flash    = require('connect-flash');
 
+
+var UserModel = require('./app/models/user')
+var FormModel = require('./app/models/form')
+var ResourceModel = require('./app/models/resource')
+var BiometricModel = require('./app/models/biometric')
+var EventModel = require('./app/models/event')
+
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url, function (err){
 	if (err) console.log(err)
 	else console.log("Connected to database at ", configDB.url)
 });
 
-mongoose.connection.db.dropDatabase();
-
 require('./config/passport')(passport); 
-
-var Form = new Schema({});
-var FormModel = mongoose.model('Form', Form);
-
-var Resource = new Schema({});
-var ResourceModel = mongoose.model('Resource', Resource);
-
-var Biometric = new Schema({});
-var BiometricModel = mongoose.model('Biometric', Biometric);
-
-var Event = new Schema({});
-var EventModel = mongoose.model('Event', Event);
-var UserModel = require('./app/models/user')
 
 var app = express();
 
@@ -64,10 +56,10 @@ restify.serve(router, UserModel);
 
 app.use(router)
 
-app.use(function (req, res){
+app.use(function (req, res, next){
 	res.setHeader("Access-Control-Allow-Origin", "*");
+	next();
 });
-
 
 var port = process.env.PORT || 3000
 app.listen(port, function() {
