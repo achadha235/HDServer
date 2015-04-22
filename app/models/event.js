@@ -12,4 +12,4 @@ var eventSchema = mongoose.Schema({
     users: [ObjectId]
 });
 
-module.exports = mongoose.model('Event', eventSchema); 2
+module.exports = mongoose.model('Event', eventSchema);

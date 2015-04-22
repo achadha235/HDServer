@@ -12,17 +12,28 @@
 			<div class="list">
 
 			  <label class="item item-input">
-			    <input type="text" placeholder="Name" ng-model="newMedication.name" >
+			    <input type="text" placeholder="Drug" ng-model="newMedication.drugName">
 			  </label>
 
 			  <label class="item item-input">
-			    <input type="text" placeholder="Drug" ng-model="newMedication.drug">
+			    <textarea placeholder="Instructions" ng-model="newMedication.instructions"></textarea>
 			  </label>
 
-			  <label class="item item-input">
-			    <textarea placeholder="Description" ng-model="newMedication.description"></textarea>
-			  </label>
-
+			  <!-- <div class="calendar" style="display: inline-flex"> -->
+			  <ionic-time-picker etime="slots.epochTime" format="slots.format" step="slots.step">
+			  	<button class="button button-full button-positive" ng-model="newMedication.time">{{formattedDate(slots.epochTime) | date: 'shortTime'}}
+			  	</button>
+				</ionic-time-picker>
+				<label class="item item-input item-select">
+				    <div class="input-label">
+				      Frequency
+				    </div>
+				    <select ng-model="newMedication.frequency">
+				      <option>Daily</option>
+				      <option selected>Weekly</option>
+				    </select>
+  				</label>
+  			<!-- </div> -->
 			</div>
 
 
@@ -38,7 +49,7 @@
 	  </div>
 	  <h1 class="title"></h1>
 	  <div class="buttons">
-	    <button class="button button-clear" ng-click="update(newMedication)" >Add</button>
+	    <button class="button button-clear" ng-click="saveNewMed()" >Add</button>
 	  </div>
 	</ion-footer-bar>
 

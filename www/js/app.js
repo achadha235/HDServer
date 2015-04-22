@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-timepicker', 'nvd3','angularMoment'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -69,41 +70,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
 
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
 
-  .state('tab.friends', {
-      url: '/friends',
+
+  .state('tab.contacts', {
+      url: '/contacts',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+        'tab-contacts': {
+          templateUrl: 'templates/tab-contacts.html',
+          controller: 'ContactsCtrl'
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    .state('tab.contact-detail', {
+      url: '/contact/:contactId',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-contacts': {
+          templateUrl: 'templates/contact-detail.html',
+          controller: 'ContactDetailCtrl'
         }
       }
     })
@@ -115,7 +99,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-home': {
         templateUrl: 'templates/tab-home.html',
-        // controller: 'HomeCtrl'
+        controller: 'HomeCtrl'
+      }
+    }
+  })
+
+  // TODO: Change this to monitor
+  .state('tab.visualization', {
+    url: '/visual',
+    views: {
+      'tab-visualization': {
+        templateUrl: 'templates/tab-visualization.html',
+        controller: 'VisualCtrl'
       }
     }
   })
@@ -130,6 +125,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  // .state('tab.stress', {
+  //   url: '/stress',
+  //   views: {
+  //     'tab-stress': {
+  //       templateUrl: 'templates/tab-stress.html',
+  //       controller: 'StressCtrl'
+  //     }
+  //   }
+  // })
+
   .state('tab.medication-detail', {
     url: '/medication/:medicationId',
     views: {
@@ -139,7 +144,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
 
   .state('tab.coach', {
     url: '/coach',
@@ -160,6 +164,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
+  .state('tab.settings',{
+    url: '/settings',
+    views: {
+      'tab-settings': {
+        templateUrl: 'templates/tab-settings.html',
+        controller: 'SettingsCtrl'
+      }
+    }
+  })
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 

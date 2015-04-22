@@ -12,11 +12,12 @@ var session      = require('express-session');
 var flash    = require('connect-flash');
 
 
-var UserModel = require('./app/models/user')
-var FormModel = require('./app/models/form')
-var ResourceModel = require('./app/models/resource')
-var BiometricModel = require('./app/models/biometric')
-var EventModel = require('./app/models/event')
+var UserModel = require('./app/models/user');
+var FormModel = require('./app/models/form');
+var ResourceModel = require('./app/models/resource');
+var BiometricModel = require('./app/models/biometric');
+var EventModel = require('./app/models/event');
+var MedicationModel = require('./app/models/medication');
 
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url, function (err){
@@ -50,6 +51,7 @@ restify.serve(router, FormModel, {
 });
 
 restify.serve(router, ResourceModel);
+restify.serve(router, MedicationModel);
 restify.serve(router, BiometricModel);
 restify.serve(router, EventModel);
 restify.serve(router, UserModel);
