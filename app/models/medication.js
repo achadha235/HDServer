@@ -7,7 +7,7 @@ var medicationSchema = mongoose.Schema({
     patient: ObjectId,
     createdBy: ObjectId,
     instructions: String,
-    schedule: String,
+    schedule: Mixed,
     drugName: String,
     drugDetails: Mixed
 });

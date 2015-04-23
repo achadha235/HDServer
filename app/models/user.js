@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
     phone: String,
     name: String,
     role: String,
-    contacts: [ObjectId],
+    contacts: [Mixed],
     settings: Mixed
 });
 
