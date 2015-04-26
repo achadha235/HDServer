@@ -1,14 +1,39 @@
 angular.module('starter.services', ['ngResource'])
 
+.factory('FDA', function ($resource){
+  return $resource('https://api.fda.gov/drug/label.json', {}, {
+    'query': {isArray: false}
+  });
+})
 
-.factory('Forms', function ($resource) {
-  //return $resource('/api/v1/Forms/:id');
+.factory('Config', function (){
+  
+  var host = "";
+  //var host = "http://rpcs.herokuapp.com";
+  var apiUrl = host + "/api/v1/";
+  var loginEndpoint = host + "/login";
+  var registerEndpoint = host + "/register";
+
   return {
-    all: function(){
-      return [];
-    }
+    host: host,
+    apiUrl: apiUrl,
+    loginEndpoint: loginEndpoint,
+    registerEndpoint: registerEndpoint
   }
 })
+
+.factory('Forms', function ($resource) {
+  return $resource('/api/v1/Forms/:id'); 
+})
+
+.factory('Events', function ($resource) {
+  return $resource('/api/v1/Events/:id'); 
+})
+
+.factory('Biometrics', function ($resource) {
+  return $resource('/api/v1/Biometrics/:id'); 
+})
+
 
 .factory('Resources', function ($resource) {
   // return $resource('/api/v1/Resources/:id');
@@ -19,13 +44,14 @@ angular.module('starter.services', ['ngResource'])
   }
 })
 
-.factory("Medications", function ($resource){
-  //return $resource('/api/v1/Medications/:id', { id: '@_id'});
-  return {
-    all: function(){
-      return [];
-    }
-  }
+.factory("Users", function ($resource, Config){
+  var url = Config.apiUrl + "Users/:id"
+  return $resource(url, { id: "@_id"});
+})
+
+.factory("Medications", function ($resource, Config){
+  var url = Config.apiUrl + "Medications/:id"
+  return $resource(url, { id: '@_id'});
 })
 
 .factory('Friends', function() {

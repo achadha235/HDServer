@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('AppCtrl', function ($scope, $ionicPlatform, $ionicModal, $http, $ionicLoading, $rootScope) {
+.controller('AppCtrl', function ($scope, $ionicPlatform, $ionicModal, $http, $ionicLoading, $rootScope, Config, Users) {
 
   $scope.registrationForm = {};
   $scope.loginForm = {};
@@ -10,10 +10,13 @@ angular.module('starter.controllers')
       template: "Loading"
     })
     
-    $http.post('/login', $scope.loginForm).
-    success(function(data, status, headers, config) {
-      $rootScope.user = data;
-
+    $http.post(Config.loginEndpoint, $scope.loginForm).
+    success(function (data, status, headers, config) {
+      Users.query({ _id: data["_id"]}, function (usrs){
+        console.log("User logged in");
+        $rootScope.user = usrs[0];
+      });
+      
       setTimeout(function(){
         window.location = "#/tab/dash";
         $ionicLoading.hide();
@@ -32,7 +35,7 @@ angular.module('starter.controllers')
       template: "Loading"
     })
 
-    $http.post('/register', $scope.registrationForm).
+    $http.post(Config.registerEndpoint, $scope.registrationForm).
     success(function(data, status, headers, config) {
       $rootScope.user = data;
 
