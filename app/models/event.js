@@ -4,12 +4,15 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var Mixed = mongoose.Schema.Types.Mixed;
 
 var eventSchema = mongoose.Schema({
-    type: String,
+    eventType: String,
     time: Date,
-    description: String,
+    notes: String, 
     createdBy: ObjectId,
     createdFor: ObjectId,
-    users: [ObjectId]
-});
+    invited: [Mixed],
+    reminder: Boolean,
+    repeat: String,
+    data: Mixed
+ });
 
 module.exports = mongoose.model('Event', eventSchema);
